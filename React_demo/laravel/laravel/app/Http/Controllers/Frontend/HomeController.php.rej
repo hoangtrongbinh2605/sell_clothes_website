@@ -1,0 +1,22 @@
+diff a/laravel/app/Http/Controllers/Frontend/HomeController.php b/laravel/app/Http/Controllers/Frontend/HomeController.php	(rejected hunks)
+@@ -18,13 +18,13 @@
+     // }
+ 
+     /**
+-     * Show the application dashboard.
++     * Display the specified resource.
+      *
+-     * @return \Illuminate\Contracts\Support\Renderable
++     * @param  int  $id
++     * @return \Illuminate\Http\Response
+      */
+-    public function index()
++    public function show($slug)
+     {
+-        $getListOnepage = Onepage::all()->toArray();
+-        return view('frontend.home', compact('getListOnepage'));
+-    }
+-}
++        $getPage = Onepage::where('slug','like',$slug.'%')->get()->toArray();
++        return view('frontend.onepage.show', compact('getPage'));
++    }}
